@@ -25,7 +25,6 @@ on:
       exclude-blocks:
         description: "blocks to exclude from deletion"
         type: string
-        required: "${{github.event.inputs.blocks}}"
       deployments:
         description: "delete deployments (Leave empty if you do not want to delete blocks)"
         type: boolean
