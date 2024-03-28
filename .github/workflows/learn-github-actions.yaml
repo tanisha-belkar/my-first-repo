@@ -3,9 +3,24 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   workflow_dispatch:
     inputs:
-      myname:
-        description: "what is your name?"
+      api-key:
+        description: "API key of the tenant"
         required: true
+      stage:
+        description: "latest/beta/test/prod/parvati"
+        required: true
+      dry-run:
+        description: "Dry run"
+        default: true
+      blocks:
+        description: "delete blocks"
+      exclude-blocks:
+        description: "blocks to exclude from deletion"
+      deployments:
+        description: "delete blocks"
+      exclude-deployments:
+        description: "blocks to exclude from deletion"
+
 jobs:
   hello:
     name: Hello
@@ -15,4 +30,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Run script"
-        run: python script.py ${{ github.event.inputs.myname }}
+        run: python script.py ${{ github.event.inputs }}
