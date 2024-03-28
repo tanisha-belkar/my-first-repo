@@ -11,5 +11,8 @@ jobs:
     name: Hello
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: "Checkout to repo"
+        uses: actions/checkout@v4
+
+      - name: "Run script"
         run: python script.py ${{ github.event.inputs.myname }}
