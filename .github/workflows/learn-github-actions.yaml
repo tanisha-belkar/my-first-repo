@@ -8,16 +8,23 @@ on:
         required: true
       stage:
         description: "latest/beta/test/prod/parvati"
-        required: true
+        type: choice
+        options:
+          - latest
+          - beta
+          - test
+          - prod
+          - parvati
       dry-run:
         description: "Dry run"
         default: true
+        type: boolean
       blocks:
-        description: "delete blocks"
+        description: "delete blocks (Leave empty if you do not want to delete blocks)"
       exclude-blocks:
         description: "blocks to exclude from deletion"
       deployments:
-        description: "delete blocks"
+        description: "delete deployments (Leave empty if you do not want to delete blocks)"
       exclude-deployments:
         description: "blocks to exclude from deletion"
 
@@ -30,4 +37,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Run script"
-        run: python script.py ${{ github.event.inputs }}
+        run: python script.py ${{ github.event.inputs.api-key }}
