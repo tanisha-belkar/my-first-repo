@@ -3,6 +3,10 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   workflow_dispatch:
     inputs:
+      dry-run:
+        description: "Dry run"
+        default: true
+        type: boolean
       api-key:
         description: "API key of the tenant"
         required: true
@@ -15,18 +19,19 @@ on:
           - test
           - prod
           - parvati
-      dry-run:
-        description: "Dry run"
-        default: true
-        type: boolean
       blocks:
-        description: "delete blocks (Leave empty if you do not want to delete blocks)"
+        description: "delete blocks"
+        type: boolean
       exclude-blocks:
         description: "blocks to exclude from deletion"
+        type: string
+        required: "${{github.event.inputs.blocks}}"
       deployments:
         description: "delete deployments (Leave empty if you do not want to delete blocks)"
+        type: boolean
       exclude-deployments:
-        description: "blocks to exclude from deletion"
+        description: "deployments to exclude from deletion"
+        type: string
 
 jobs:
   hello:
