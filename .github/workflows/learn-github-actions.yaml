@@ -41,4 +41,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Run script"
-        run: python script.py -- name ${{ github.event.input.stage }} --age ${{ github.event.input.blocks }}
+        run: echo 'y' | python script.py -- name ${{ github.event.input.stage }} --age ${{ github.event.input.blocks }}
