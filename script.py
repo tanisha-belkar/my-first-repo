@@ -7,7 +7,7 @@ parser.add_argument("--city", help="city")
 
 args = parser.parse_args()
 
-if args.age < 20:
+if args.age == '15':
     choice = input("enter choice- ")
 
 name, city = args
