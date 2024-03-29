@@ -11,4 +11,4 @@ if args.age == '15':
     choice = input("enter choice- ")
 
 name, city = args.name, args.city
-print(name + " " + city + " " + choice)
+print(name + " " + choice)
