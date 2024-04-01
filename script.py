@@ -12,7 +12,5 @@ parser.add_argument("--deployments", help="city")
 parser.add_argument("--exclude-deployments", help="city")
 
 args = parser.parse_args()
-choice = 'n'
-if args.age != '15':
-    choice = input("enter choice- ")
+
 print(args)
