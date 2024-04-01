@@ -1,14 +1,15 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: Tenant housekeeping
+run-name: ${{ github.actor }} is cleaning up the tenant resources
 on:
   workflow_dispatch:
     inputs:
       dry-run:
         description: "Dry run"
-        default: true
         type: boolean
+        default: true
       api-key:
         description: "API key of the tenant"
+        type: string
         required: true
       stage:
         description: "latest/beta/test/prod/parvati"
@@ -33,12 +34,12 @@ on:
         type: string
 
 jobs:
-  hello:
-    name: Hello
+  start:
+    name: Start Clean up
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout to repo"
         uses: actions/checkout@v4
 
       - name: "Run script"
-        run: echo 'y' | python script.py --name ${{ github.event.inputs.stage }} --age 15
+        run: echo 'y' | python scripts/delete_resources/delete_resources.py --api-key ${{ github.event.inputs.api-key }} --stage ${{ github.event.inputs.stage }} ${{ github.event.inputs.dry-run == true && '--dry-run' || '' }} ${{ github.event.inputs.blocks == true && '--blocks + github.event.inputs.exclude-blocks' || '' }} ${{ github.event.inputs.deployments == true && '--deployments + github.event.inputs.exclude-deployments' || '' }}

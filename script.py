@@ -9,6 +9,4 @@ args = parser.parse_args()
 choice = 'n'
 if args.age != '15':
     choice = input("enter choice- ")
-
-name, city = args.name, args.city
-print(name + " " + choice)
+print(args)
