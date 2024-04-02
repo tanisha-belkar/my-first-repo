@@ -15,15 +15,15 @@ parser.add_argument(
     "--blocks", help="delete blocks in the specific tenant", action="store_true"
 )
 parser.add_argument(
-    "--deployments",
-    help="delete deployments in the specific tenant",
-    action="store_true",
-)
-parser.add_argument(
     "--exclude-blocks",
     nargs="+",
     help="list of blocks which should be excluded from deletion",
     default=[],
+)
+parser.add_argument(
+    "--deployments",
+    help="delete deployments in the specific tenant",
+    action="store_true",
 )
 parser.add_argument(
     "--exclude-deployments",
