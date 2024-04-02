@@ -1,5 +1,5 @@
 name: Tenant housekeeping
-run-name: ${{ github.actor }} is cleaning up the ${{github.event.inputs.blocks == 'true' && 'blocks '}} ${{github.event.inputs.blocks == 'true' && github.event.inputs.deployments == 'true' && 'and '}} ${{github.event.inputs.deployments == 'true' && 'deployments '}}  on the tenant
+run-name: ${{ github.actor }} is cleaning up the ${{github.event.inputs.blocks == 'true' && 'blocks ' || ''}} ${{github.event.inputs.blocks == 'true' && github.event.inputs.deployments == 'true' && 'and ' || ''}} ${{github.event.inputs.deployments == 'true' && 'deployments ' || ''}}  on the tenant
 
 on:
   workflow_dispatch:
