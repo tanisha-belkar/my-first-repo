@@ -1,5 +1,6 @@
 name: Tenant housekeeping
-run-name: ${{ github.actor }} is cleaning up the tenant resources
+run-name: ${{ github.actor }} is cleaning up the ${{github.event.inputs.blocks == 'true' && 'blocks '}} ${{github.event.inputs.blocks == 'true' && github.event.inputs.deployments == 'true' && 'and '}} ${{github.event.inputs.deployments == 'true' && 'deployments '}}  on the tenant
+
 on:
   workflow_dispatch:
     inputs:
@@ -40,6 +41,13 @@ jobs:
     steps:
       - name: "Checkout to repo"
         uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: "Install peak-sdk"
+        run: pip install peak-sdk==1.5.0
 
       - name: "Run script"
         run: echo 'y' | python script.py --api-key ${{ github.event.inputs.api-key }} --stage ${{ github.event.inputs.stage }} ${{ github.event.inputs.dry-run == 'true' && '--dry-run' || '' }} ${{ github.event.inputs.blocks=='true' && '--blocks ' || ''}} ${{ github.event.inputs.exclude-blocks && format('--exclude-blocks {0}', github.event.inputs.exclude-blocks) || ''}}
